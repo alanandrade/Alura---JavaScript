@@ -2,37 +2,41 @@ var titulo = document.querySelector(".titulo");
 titulo.textContent = "Aparecida Nutricionista";
 
 //Seleciona o paciente
-var paciente = document.querySelector("#primeiro-paciente"); //Mostra todo o TR do paciente
+var pacientes = document.querySelectorAll(".paciente"); //Mostra todo o TR do paciente
 
-// PESO
-var tdPeso = paciente.querySelector(".info-peso"); //Somente a classe HTML do .info-peso
-var peso = tdPeso.textContent;//Somente o conteudo da classe .info-peso
+for (var i = 0; i < pacientes.length; i++) { // Se I for menor que pacientes, acrescenta mais um no I
+    //console.log(pacientes[i]); //var I(Indice) entre [] pega cada indice do array
 
-// ALTURA
-var tdAltura = paciente.querySelector(".info-altura");
-var altura = tdAltura.textContent;
+    var paciente = pacientes[i]; //Adiciona a cada iteracao do FOR o indice dentro de paciente
 
-// IMC Selecionado
-var tdImc = paciente.querySelector(".info-imc");
+    // PESO
+    var tdPeso = paciente.querySelector(".info-peso"); //Somente a classe HTML do .info-peso
+    var peso = tdPeso.textContent;//Somente o conteudo da classe .info-peso
 
-var pesoEhValido = true;
-var alturaEhValida = true;
+    // ALTURA
+    var tdAltura = paciente.querySelector(".info-altura");
+    var altura = tdAltura.textContent;
 
-// VALIDACAO
-if(peso <= 0 || peso >= 1000){
-    console.log("Peso inválido!");
-    pesoEhValido = false;
-    tdImc.textContent = "Peso inválido";
-}
+    // IMC Selecionado
+    var tdImc = paciente.querySelector(".info-imc");
 
-if(altura <= 0 || altura >= 3){
-    console.log("Altura inválida!");
-    alturaEhValida = false;
-    tdImc.textContent = "Altura inválida";
-}
+    var pesoEhValido = true;
+    var alturaEhValida = true;
 
-if(pesoEhValido && alturaEhValida){ //Exibi IMC somente se as duas variaveis continuam true
-    // Calculo IMC e insercao no HTML
-    var imc = peso / (altura * altura);
-    tdImc.textContent = imc;
+    // VALIDACAO
+    if (peso <= 0 || peso >= 1000) {
+        pesoEhValido = false;
+        tdImc.textContent = "Peso inválido";
+    }
+
+    if (altura <= 0 || altura >= 3) {
+        alturaEhValida = false;
+        tdImc.textContent = "Altura inválida";
+    }
+
+    if (pesoEhValido == true && alturaEhValida == true) { //Faz o calculo IMC somente se as duas variaveis continuam true
+        // Calculo IMC e insercao no HTML
+        var imc = peso / (altura * altura);
+        tdImc.textContent = imc.toFixed(2);
+    }
 }
