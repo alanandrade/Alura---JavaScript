@@ -45,3 +45,9 @@ for (var i = 0; i < pacientes.length; i++) { // Se I for menor que pacientes, ac
         tdImc.textContent = imc.toFixed(0);
     }
 }
+
+var botaoAdicionar = document.getElementById("adicionar-paciente");
+botaoAdicionar.addEventListener("click",function(event){
+    event.preventDefault(); //Previne o comportamento padrao de um btn de formulario
+    console.log("Botao de adicionar clicado!");
+})
