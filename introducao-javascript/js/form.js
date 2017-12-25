@@ -8,13 +8,18 @@ botaoAdicionar.addEventListener("click",function(event){
     
     var form = document.querySelector("#form-adiciona");
     
-    //Traz o objeto Paciente com cada campo do form
+    //Traz os valores do form e function abaixo possui um objeto paciente
     var paciente = obtemPacienteDoFormulario(form);
 
     //Cria TR com os dados
     var pacienteTr = montaTr(paciente);
 
-    
+    //Validar Paciente cadastrado, caso o paciente NAO for valido, nao sera cadastrado
+    if(!validaPaciente(paciente)){
+        console.log("Paciente inválido");
+        return; // Nao continua o restante da funcao
+    }
+
     //Seleciona tabela de exibicao
     var tabela = document.querySelector("#tabela-pacientes");
 
@@ -52,10 +57,19 @@ function montaTr(paciente){
     return pacienteTr;//retorn uma linha com todos os dados
 }
 
+//Ordem de elementos criados na TD
 function montaTd(dado,classe){
     var td = document.createElement("td");
     td.textContent = dado;
     td.classList.add(classe);
 
     return td;
+}
+
+function validaPaciente(paciente){
+    if(validaPeso(paciente.peso)){
+        return true;
+    }else{
+        return false;
+    }
 }
