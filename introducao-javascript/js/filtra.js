@@ -10,7 +10,8 @@ campoFiltro.addEventListener("input", function(){ //O "INPUT" retorna cada eleme
             var paciente = pacientes[i];
             var tdNome = paciente.querySelector(".info-nome");
             var nome = tdNome.textContent;
-            if(nome != this.value){
+            var expressao = new RegExp(this.value,"i"); //"i" Insentive, procura por letras menores e maiores
+            if(!expressao.test(nome)){
                 paciente.classList.add("invisivel");
             }else{
                 paciente.classList.remove("invisivel");
