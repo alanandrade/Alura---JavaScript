@@ -10,27 +10,27 @@ botaoAdicionar.addEventListener("click",function(event){
     
     //Traz os valores do form e function abaixo possui um objeto paciente
     var paciente = obtemPacienteDoFormulario(form);
-
-    //Cria TR com os dados
-    var pacienteTr = montaTr(paciente);
-
     var erros = validaPaciente(paciente);
-    console.log(erros);
 
     if(erros.length > 0){
         exibeMensagensDeErro(erros);        
         return; // Nao continua o restante da funcao
     }
 
-    //Seleciona tabela de exibicao
-    var tabela = document.querySelector("#tabela-pacientes");
-
-    tabela.appendChild(pacienteTr);
+    adicionaPacienteNaTabela(paciente);
 
     form.reset();//Resetar campos do form depois de enviar
     var mensagensErro = document.querySelector("#mensagens-erro");
     mensagensErro.innerHTML = "";
 })
+
+function adicionaPacienteNaTabela(paciente){
+    //Cria TR com os dados
+    var pacienteTr = montaTr(paciente);
+    //Seleciona tabela de exibicao
+    var tabela = document.querySelector("#tabela-pacientes");
+    tabela.appendChild(pacienteTr);
+}
 
 function exibeMensagensDeErro(erros){
     var ul = document.querySelector("#mensagens-erro");
